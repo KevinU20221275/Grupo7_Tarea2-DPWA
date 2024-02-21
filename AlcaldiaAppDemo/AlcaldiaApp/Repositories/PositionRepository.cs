@@ -7,6 +7,7 @@ namespace AlcaldiaApp.Repositories
 {
     public class PositionRepository : IPositionRepository
     {
+        // This variable is used to establish the connection to the database
         private readonly SqlDataAccess _dbConnection;
 
         public PositionRepository(SqlDataAccess dbConnection)
@@ -14,6 +15,7 @@ namespace AlcaldiaApp.Repositories
             _dbConnection = dbConnection;
         }
 
+        // GetAllPositions
         public IEnumerable<PositionModel> GetAllPositions()
         {
             List<PositionModel> positionsList = new List<PositionModel>();
@@ -21,7 +23,6 @@ namespace AlcaldiaApp.Repositories
             using (var connection = _dbConnection.GetConnection())
             {
                 connection.Open();
-
                 using (var command = new SqlCommand()) 
                 {
                     command.Connection = connection;
@@ -43,12 +44,11 @@ namespace AlcaldiaApp.Repositories
                     }
                 }
             }
-
             return positionsList;
         }
 
 
-
+        // GetPositionById
         public PositionModel? GetPositionById(int id)
         {
             PositionModel position = new PositionModel();
@@ -56,7 +56,6 @@ namespace AlcaldiaApp.Repositories
             using (var connection = _dbConnection.GetConnection())
             {
                 connection.Open();
-
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
@@ -81,6 +80,7 @@ namespace AlcaldiaApp.Repositories
         }
 
 
+        // Add Position
         public void Add(PositionModel positionModel)
         {
             using (var connection = _dbConnection.GetConnection())
@@ -102,6 +102,8 @@ namespace AlcaldiaApp.Repositories
             }
         }
 
+
+        // Edit Position
         public void Edit(PositionModel positionModel)
         {
             using (var connection = _dbConnection.GetConnection())
@@ -125,6 +127,7 @@ namespace AlcaldiaApp.Repositories
         }
 
 
+        // Delete Position
         public void Delete(int id)
         {
             using (var connection = _dbConnection.GetConnection())

@@ -1,5 +1,9 @@
 using AlcaldiaApp.Data;
+using AlcaldiaApp.Models;
 using AlcaldiaApp.Repositories;
+using AlcaldiaApp.Validations;
+using FluentValidation;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<SqlDataAccess>();
 builder.Services.AddScoped<IPositionRepository, PositionRepository>();
+builder.Services.AddScoped<IValidator<PositionModel>, PositionValidator>();
+
+
+
+ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es");
 
 var app = builder.Build();
 

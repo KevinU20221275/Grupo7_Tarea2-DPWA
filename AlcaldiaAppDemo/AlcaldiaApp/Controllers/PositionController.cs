@@ -1,24 +1,32 @@
 ﻿using AlcaldiaApp.Models;
 using AlcaldiaApp.Repositories;
+using AlcaldiaApp.Validations;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlcaldiaApp.Controllers
 {
     public class PositionController : Controller
     {
+        private readonly IValidator<PositionModel> _positionValidator;
         private readonly IPositionRepository _positionRepository;
 
-        public PositionController(IPositionRepository positionRepository)
+        public PositionController(IPositionRepository positionRepository, IValidator<PositionModel> positionValidator)
         {
             _positionRepository = positionRepository;
+            _positionValidator = positionValidator;
         }
 
 
+        // Index
         public IActionResult Index()
         {
             return View(_positionRepository.GetAllPositions());
         }
 
+
+        // Create
         [HttpGet]
         public IActionResult Create()
         {
@@ -29,25 +37,27 @@ namespace AlcaldiaApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(PositionModel positionModel)
         {
-            if (!ModelState.IsValid)
+            ValidationResult validationResult = _positionValidator.Validate(positionModel);
+            if (!validationResult.IsValid)
             {
-                return View(positionModel);
+                 validationResult.AddToModelState(this.ModelState);
+                 return View(positionModel);
             }
-
             _positionRepository.Add(positionModel);
-            return RedirectToAction(nameof(Index));
+            TempData["SuccessMessage"] = "El registro se creo exitosamente.";
+            return RedirectToAction(nameof(Index)); 
         }
 
+
+        // Edit
         [HttpGet]
         public IActionResult Edit(int id) 
         {
             var position = _positionRepository.GetPositionById(id);
-
             if (position == null)
             {
                 return NotFound();
             }
-
             return View(position);
         }
 
@@ -55,25 +65,27 @@ namespace AlcaldiaApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(PositionModel positionModel)
         {
-            if (!ModelState.IsValid)
+            ValidationResult validationResult = _positionValidator.Validate(positionModel);
+            if (!validationResult.IsValid)
             {
+                validationResult.AddToModelState(this.ModelState);
                 return View(positionModel);
             }
-
             _positionRepository.Edit(positionModel);
+            TempData["SuccessMessage"] = "El registro se Edito exitosamente.";
             return RedirectToAction(nameof(Index));
         }
 
+
+        // Delete
         [HttpGet]
         public IActionResult Delete(int id)
         {
             var position = _positionRepository.GetPositionById(id);
-
             if (position == null)
             {
                 return NotFound();
             }
-
             return View(position);
         }
 
@@ -82,7 +94,7 @@ namespace AlcaldiaApp.Controllers
         public IActionResult Delete(PositionModel positionModel)
         {
             _positionRepository.Delete(positionModel.Id);
-
+            TempData["SuccessMessage"] = "El registro se Elimino exitosamente.";
             return RedirectToAction(nameof(Index));
         }
     }
