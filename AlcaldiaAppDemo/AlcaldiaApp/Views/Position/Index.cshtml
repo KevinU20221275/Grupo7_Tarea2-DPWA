@@ -1,0 +1,100 @@
+﻿@model IEnumerable<PositionModel>
+@{
+    ViewData["Title"] = "Listado de Cargos";
+
+    // variable para guardar el mensaje que viene de los metodos crear, editar, eliminar
+    var successMessage = TempData["SuccessMessage"] as string;
+}
+
+<h1 class="text-center">Listado de Cargos</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="mt-3 mb-3">
+                <a asp-action="Create" asp-controller="Position" class="btn btn-success">Agregar Cargo <i class="bi bi-file-earmark-plus"></i></a>
+            </div>
+
+            <!-- alerta que se mostrara al crear,editar o eliminar un registro -->
+            @if (!string.IsNullOrWhiteSpace(successMessage))
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Html.DisplayFor(x => successMessage)</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <table class="table table-bordered table-striped table-responsive mt-3" id="positionsTable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Cargo</th>
+                        <th>Descripcion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var position in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(item => position.Id)</td>
+                            <td>@Html.DisplayFor(item => position.Position)</td>
+                            <td>@Html.DisplayFor(item => position.Description)</td>
+                            <td>
+                                <a asp-controller="Position" asp-action="Edit" asp-route-id="@position.Id"
+                                   class="btn btn-warning">Editar <i class="bi bi-pencil-fill"></i></a>
+
+                                <a asp-controller="Position" asp-action="Delete" asp-route-id="@position.Id"
+                                   class="btn btn-danger">Eliminar <i class="bi bi-trash3-fill"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#positionsTable").DataTable({
+                dom: "Bfrtip",
+                buttons: [
+                    {
+                        extend: 'csv',
+                        className: 'bg-info border-0 text-white',
+                        exportOptions: {
+                            columns: ':not(:eq(3))'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        className: 'bg-danger border-0 text-white',
+                        exportOptions: {
+                            columns: ':not(:eq(3))'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'bg-success border-0 text-white',
+                        exportOptions: {
+                            columns: ':not(:eq(3))'
+                        }
+                    }
+                ],
+                columnDefs: [
+                    {
+                        target: 3,
+                        orderable: false,
+                        searchable: false
+                    }
+                ],
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                }
+            })
+        })
+    </script>
+}
