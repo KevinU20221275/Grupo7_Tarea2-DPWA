@@ -1,4 +1,5 @@
 using AlcaldiaApp.Data;
+using AlcaldiaApp.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<SqlDataAccess>();
+builder.Services.AddScoped<IPositionRepository, PositionRepository>();
 
 var app = builder.Build();
 

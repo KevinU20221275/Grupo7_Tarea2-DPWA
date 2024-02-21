@@ -1,0 +1,28 @@
+﻿@model PositionModel
+@{
+    ViewData["Title"] = "Eliminar Cargo";
+}
+
+<h1 class="text-center">Seguro que Quieres Eliminar este Cargo?</h1>
+
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <dl>
+                <dt>@Html.DisplayNameFor(model => model.Position)</dt>
+                <dd>@Html.DisplayFor(model => model.Position)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Description)</dt>
+                <dd>@Html.DisplayFor(model => model.Description)</dd>
+            </dl>
+            <form asp-action="Delete">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+
+                <a asp-action="Index" class="btn btn-primary">Volver al Listado</a>
+            </form>
+        </div>
+    </div>
+</div>
+
