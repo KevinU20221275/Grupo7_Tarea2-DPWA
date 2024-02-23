@@ -11,8 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<SqlDataAccess>();
+
+// dependency injection for the Positions table
 builder.Services.AddScoped<IPositionRepository, PositionRepository>();
 builder.Services.AddScoped<IValidator<PositionModel>, PositionValidator>();
+
+// dependency injection for the Employees table
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IValidator<EmployeeModel>, EmployeeValidator>();
 
 
 
