@@ -1,6 +1,23 @@
-﻿namespace AlcaldiaApp.Validations
+﻿using AlcaldiaApp.Models;
+using FluentValidation;
+
+namespace AlcaldiaApp.Validations
 {
-    public class ServiceRequestsValidator
+    public class serviceRequestValidator : AbstractValidator<EmployeeModel>
     {
+        public serviceRequestValidator()
+        {
+            RuleFor(serviceRequest => serviceRequest.ServiceId)
+            .NotEmpty().WithMessage("El Servicio es Requerido").WithName("Servicio")
+            .NotNull().WithMessage("El Servicio no puede estar Vacio");
+
+            RuleFor(serviceRequest => serviceRequest.RequestDate)
+                .NotEmpty().WithMessage("La Fecha de Solicitud es Requerida").WithName("Fecha de Solicitud")
+                .NotNull().WithMessage("La Fecha de Solicitud no puede estar Vacia");
+
+            RuleFor(serviceRequest => serviceRequest.Status)
+                .NotEmpty().WithMessage("El Estado es Requerido").WithName("Estado")
+                .NotNull().WithMessage("El Estado no puede estar Vacio");
+        }
     }
 }
