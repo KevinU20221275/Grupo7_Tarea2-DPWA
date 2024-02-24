@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace AlcaldiaApp.Validations
 {
-    public class serviceRequestValidator : AbstractValidator<EmployeeModel>
+    public class serviceRequestValidator : AbstractValidator<serviceRequestModel>
     {
         public serviceRequestValidator()
         {

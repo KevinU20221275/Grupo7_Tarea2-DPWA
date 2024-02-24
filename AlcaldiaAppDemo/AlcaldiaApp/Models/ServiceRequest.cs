@@ -4,7 +4,10 @@ namespace AlcaldiaApp.Models
 {
     public class serviceRequestModel
     {
-        [Display(Name = "Residente")]
+		[Display(Name = "id")]
+		public int Id { get; set; }
+
+		[Display(Name = "Residente")]
         public int ResidentId { get; set; }
 
         [Display(Name = "Servicio")]

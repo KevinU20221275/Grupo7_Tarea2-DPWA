@@ -12,7 +12,7 @@ namespace AlcaldiaApp.Controllers
         private readonly IValidator<serviceRequestModel> _serviceRequestValidator;
         private readonly IServiceRequestRepository _serviceRequestRepository;
 
-        public ServiceRequestController(IServiceRequestRepository serviceRequestRepository, IValidator<ServiceRequestModel> serviceRequestValidator)
+        public ServiceRequestController(IServiceRequestRepository serviceRequestRepository, IValidator<serviceRequestModel> serviceRequestValidator)
         {
             _serviceRequestRepository = serviceRequestRepository;
             _serviceRequestValidator = serviceRequestValidator;
@@ -22,7 +22,7 @@ namespace AlcaldiaApp.Controllers
         // Index
         public IActionResult Index()
         {
-            return View(_serviceRequestRepository.GetAllServiceRequests());
+            return View(_serviceRequestRepository.GetServices());
         }
 
 
@@ -35,7 +35,7 @@ namespace AlcaldiaApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ServiceRequestModel serviceRequestModel)
+        public IActionResult Create(serviceRequestModel serviceRequestModel)
         {
             ValidationResult validationResult = _serviceRequestValidator.Validate(serviceRequestModel);
             if (!validationResult.IsValid)
@@ -63,7 +63,7 @@ namespace AlcaldiaApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(ServiceRequestModel serviceRequestModel)
+        public IActionResult Edit(serviceRequestModel serviceRequestModel)
         {
             ValidationResult validationResult = _serviceRequestValidator.Validate(serviceRequestModel);
             if (!validationResult.IsValid)
@@ -71,7 +71,7 @@ namespace AlcaldiaApp.Controllers
                 validationResult.AddToModelState(this.ModelState);
                 return View(serviceRequestModel);
             }
-            _serviceRequestRepository.Edit(serviceRequestModel);
+            _serviceRequestRepository.Edit(EmployeeModel);
             TempData["SuccessMessage"] = "El registro se Edito exitosamente.";
             return RedirectToAction(nameof(Index));
         }
@@ -91,7 +91,7 @@ namespace AlcaldiaApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(ServiceRequestModel serviceRequestModel)
+        public IActionResult Delete(serviceRequestModel serviceRequestModel)
         {
             _serviceRequestRepository.Delete(serviceRequestModel.Id);
             TempData["SuccessMessage"] = "El registro se Elimino exitosamente.";

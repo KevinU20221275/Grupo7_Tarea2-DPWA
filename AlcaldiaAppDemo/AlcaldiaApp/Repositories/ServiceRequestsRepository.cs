@@ -5,8 +5,8 @@ using System.Data.SqlClient;
 
 namespace AlcaldiaApp.Repositories
 {
-    public class ServiceRequestRepository : ServiceRequestRepository
-    {
+    public class ServiceRequestRepository : serviceRequestModel
+	{
         // This variable is used to establish the connection to the database
         private readonly SqlDataAccess _dbConnection;
 
@@ -16,9 +16,9 @@ namespace AlcaldiaApp.Repositories
     }
 
     // GetAllServiceRequestRepository
-    public IEnumerable<ServiceRequestModel> GetAllServiceRequests()
+    public IEnumerable<serviceRequestModel> GetAllServiceRequests()
     {
-        List<ServiceRequestModel> serviceRequestList = new List<ServiceRequestModel>();
+        List<serviceRequestModel> serviceRequestList = new List<serviceRequestModel>();
 
         using (var connection = _dbConnection.GetConnection())
         {
@@ -33,7 +33,7 @@ namespace AlcaldiaApp.Repositories
                 {
                     while (reader.Read())
                     {
-                        ServiceRequestModel serviceRequest = new ServiceRequestModel();
+							serviceRequestModel serviceRequest = new serviceRequestModel();
                         serviceRequest.Id = Convert.ToInt32(reader["Id"]);
                         serviceRequest.ResidentId = Convert.ToInt32(reader["ResidentId"]);
                         serviceRequest.ServiceId = Convert.ToInt32(reader["ServiceId"]);
@@ -50,9 +50,9 @@ namespace AlcaldiaApp.Repositories
 
 
     // GetServiceRequestById
-    public ServiceRequestModel GetServiceRequestById(int id)
+    public serviceRequestModel GetServiceRequestById(int id)
     {
-        ServiceRequestModel serviceRequest = new ServiceRequestModel();
+			serviceRequestModel serviceRequest = new serviceRequestModel();
 
         using (var connection = _dbConnection.GetConnection())
         {
@@ -84,9 +84,9 @@ namespace AlcaldiaApp.Repositories
 
 
     // GetServices
-    public IEnumerable<ServiceModel> GetServices()
+    public IEnumerable<serviceRequestModel> GetServices()
     {
-        List<ServiceModel> servicesList = new List<ServiceModel>();
+        List<serviceRequestModel> servicesList = new List<serviceRequestModel>();
         using (var conection = _dbConnection.GetConnection())
         {
             conection.Open();
@@ -100,11 +100,14 @@ namespace AlcaldiaApp.Repositories
                 {
                     while (reader.Read())
                     {
-                        ServiceModel service = new ServiceModel();
-                        service.Id = Convert.ToInt32(reader["Id"]);
-                        service.Service = reader["Service"].ToString();
+							serviceRequestModel service = new serviceRequestModel();
+							service.Id = Convert.ToInt32(reader["Id"]);
+							service.ResidentId = Convert.ToInt32(reader["ResidentId"]);
+							service.ServiceId = Convert.ToInt32(reader["ServiceId"]);
+							service.RequestDate = Convert.ToDateTime(reader["RequestDate"]);
+							service.Status = Convert.ToBoolean(reader["Status"]);
 
-                        servicesList.Add(service);
+							servicesList.Add(service);
                     }
                 }
             }
@@ -114,7 +117,7 @@ namespace AlcaldiaApp.Repositories
 
 
     // Add ServiceRequest
-    public void Add(ServiceRequestModel serviceRequest)
+    public void Add(serviceRequestModel serviceRequest)
     {
         using (var connection = _dbConnection.GetConnection())
         {
@@ -137,7 +140,7 @@ namespace AlcaldiaApp.Repositories
 
 
     // Edit ServiceRequest
-    public void Edit(ServiceRequestModel serviceRequest)
+    public void Edit(serviceRequestModel serviceRequest)
     {
         using (var connection = _dbConnection.GetConnection())
         {

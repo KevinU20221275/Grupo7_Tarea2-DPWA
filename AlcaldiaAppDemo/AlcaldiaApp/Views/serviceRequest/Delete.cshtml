@@ -1,9 +1,9 @@
-﻿@model EmployeeModel
+﻿@model serviceRequestModel
 @{
-    ViewData["Title"] = "Eliminar Empleado";
+    ViewData["Title"] = "Eliminar comprador";
 }
 
-<h1 class="text-center">¿Seguro que Quieres Eliminar este Empleado?</h1>
+<h1 class="text-center">¿Seguro que Quieres Eliminar este comprador?</h1>
 
 <hr />
 
@@ -11,14 +11,14 @@
     <div class="row">
         <div class="col-md-12">
             <dl>
-                <dt>@Html.DisplayNameFor(model => model.LastName)</dt>
-                <dd>@Html.DisplayFor(model => model.LastName)</dd>
+                <dt>@Html.DisplayNameFor(model => model.ServiceId)</dt>
+                <dd>@Html.DisplayFor(model => model.ServiceId)</dd>
 
-                <dt>@Html.DisplayNameFor(model => model.PositionName)</dt>
-                <dd>@Html.DisplayFor(model => model.PositionName)</dd>
+                <dt>@Html.DisplayNameFor(model => model.RequestDate)</dt>
+                <dd>@Html.DisplayFor(model => model.RequestDate)</dd>
 
-                <dt>@Html.DisplayNameFor(model => model.Salary)</dt>
-                <dd>@Html.DisplayFor(model => model.Salary)</dd>
+                <dt>@Html.DisplayNameFor(model => model.Status)</dt>
+                <dd>@Html.DisplayFor(model => model.Status)</dd>
             </dl>
             <form asp-action="Delete" class="mt-3">
                 <input type="submit" value="Eliminar" class="btn btn-danger" />
