@@ -6,7 +6,7 @@ namespace AlcaldiaApp.Repositories
     {
         IEnumerable<ServiceRequestModel> GetAllServiceRequests();
 
-        ServiceRequestModel GetServiceRequestById(int id);
+        ServiceRequestModel? GetServiceRequestById(int id);
 
         IEnumerable<MunicipalServiceModel> GetAllMunicipalServices();
 

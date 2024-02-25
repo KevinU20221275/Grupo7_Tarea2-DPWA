@@ -60,7 +60,7 @@ namespace AlcaldiaApp.Repositories
 
 
         // GetServiceRequestById
-        public ServiceRequestModel GetServiceRequestById(int id)
+        public ServiceRequestModel? GetServiceRequestById(int id)
         {
             ServiceRequestModel serviceRequest = new ServiceRequestModel();
 
@@ -102,7 +102,7 @@ namespace AlcaldiaApp.Repositories
         }
 
 
-        // Get Municipal Services
+        // Get Residents
         public IEnumerable<ResidentModel> GetAllResidents()
         {
             List<ResidentModel> residentsList = new List<ResidentModel>();
