@@ -19,8 +19,10 @@ namespace AlcaldiaApp.Models
         [Display(Name = "Estado")]
         public bool Status { get; set; }
 
+        [Display(Name = "Nombre del Residente")]
         public string ResidentName { get; set; }
 
+        [Display(Name = "Servicio Solicitado")]
         public string ServiceName { get; set; }
 
     }

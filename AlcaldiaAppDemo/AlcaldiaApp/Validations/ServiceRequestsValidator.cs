@@ -7,6 +7,10 @@ namespace AlcaldiaApp.Validations
     {
         public ServiceRequestValidator()
         {
+            RuleFor(serviceRequest => serviceRequest.ResidentId)
+                .NotEmpty().WithMessage("El Solicitante es Requerido").WithName("Solicitante")
+                .NotNull().WithMessage("El Solicitante no puede ser vacio");
+
             RuleFor(serviceRequest => serviceRequest.ServiceId)
             .NotEmpty().WithMessage("El Servicio es Requerido").WithName("Servicio")
             .NotNull().WithMessage("El Servicio no puede estar Vacio");
@@ -14,8 +18,6 @@ namespace AlcaldiaApp.Validations
             RuleFor(serviceRequest => serviceRequest.RequestDate)
                 .NotEmpty().WithMessage("La Fecha de Solicitud es Requerida").WithName("Fecha de Solicitud")
                 .NotNull().WithMessage("La Fecha de Solicitud no puede estar Vacia");
-
-            
         }
     }
 }
