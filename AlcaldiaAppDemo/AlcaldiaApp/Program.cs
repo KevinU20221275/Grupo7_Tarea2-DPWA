@@ -20,6 +20,10 @@ builder.Services.AddScoped<IValidator<PositionModel>, PositionValidator>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IValidator<EmployeeModel>, EmployeeValidator>();
 
+// dependency injection for the ServiceRequests table
+builder.Services.AddScoped<IServiceRequestRepository, ServiceRequestRepository>();
+builder.Services.AddScoped<IValidator<ServiceRequestModel>, ServiceRequestValidator>();
+
 
 
 ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("es");

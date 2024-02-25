@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace AlcaldiaApp.Validations
 {
-    public class serviceRequestValidator : AbstractValidator<serviceRequestModel>
+    public class ServiceRequestValidator : AbstractValidator<ServiceRequestModel>
     {
-        public serviceRequestValidator()
+        public ServiceRequestValidator()
         {
             RuleFor(serviceRequest => serviceRequest.ServiceId)
             .NotEmpty().WithMessage("El Servicio es Requerido").WithName("Servicio")
@@ -15,9 +15,7 @@ namespace AlcaldiaApp.Validations
                 .NotEmpty().WithMessage("La Fecha de Solicitud es Requerida").WithName("Fecha de Solicitud")
                 .NotNull().WithMessage("La Fecha de Solicitud no puede estar Vacia");
 
-            RuleFor(serviceRequest => serviceRequest.Status)
-                .NotEmpty().WithMessage("El Estado es Requerido").WithName("Estado")
-                .NotNull().WithMessage("El Estado no puede estar Vacio");
+            
         }
     }
 }

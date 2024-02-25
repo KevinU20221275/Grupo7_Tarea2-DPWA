@@ -1,12 +1,12 @@
-﻿@model IserviceRequestModel<serviceRequestModel>
+﻿@model IEnumerable<ServiceRequestModel>
 @{
-    ViewData["Title"] = "Listado de Empleados";
+    ViewData["Title"] = "Listado de Solicitudes de Servicios";
 
     // variable para guardar el mensaje que viene de los metodos crear, editar, eliminar
     var successMessage = TempData["SuccessMessage"] as string;
 }
 
-<h1 class="text-center">Listado de Empleados</h1>
+<h1 class="text-center">Listado de Solicitudes de Servicios</h1>
 
 <div class="container">
     <div class="row">
@@ -32,7 +32,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Residente</th>
-                        <th>Servicio</th>
+                        <th>Servicio Solicitado</th>
                         <th>Fecha de Solicitud</th>
                         <th>Estado</th>
                         <th>Acciones</th>
@@ -43,10 +43,19 @@
                     {
                         <tr>
                             <td>@Html.DisplayFor(item => serviceRequest.Id)</td>
-                            <td>@Html.DisplayFor(item => serviceRequest.ResidentId)</td>
-                            <td>@Html.DisplayFor(item => serviceRequest.ServiceId)</td>
+                            <td>@Html.DisplayFor(item => serviceRequest.ResidentName)</td>
+                            <td>@Html.DisplayFor(item => serviceRequest.ServiceName)</td>
                             <td>@Html.DisplayFor(item => serviceRequest.RequestDate)</td>
-                            <td>@Html.DisplayFor(item => serviceRequest.Status)</td>
+                            <td>
+                                @if (serviceRequest.Status)
+                                {
+                                    <span style="color: green;">Completado</span>
+                                }
+                                else
+                                {
+                                    <span style="color: red;">Pendiente</span>
+                                }
+                            </td>
                             <td>
                                 <a asp-controller="ServiceRequest" asp-action="Edit"
                                    asp-route-id="@serviceRequest.Id" class="btn btn-warning">Editar <i class="bi bi-pencil-fill"></i></a>
@@ -60,11 +69,12 @@
             </table>
         </div>
     </div>
+</div>
 
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $("#employeesTable").DataTable({
+            $("#serviceRequestsTable").DataTable({
                 dom: "Bfrtip",
                 buttons: [
                     {

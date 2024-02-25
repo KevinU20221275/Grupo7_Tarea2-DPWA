@@ -1,9 +1,9 @@
-﻿@model serviceRequestModel
+﻿@model ServiceRequestModel
 @{
-    ViewData["Title"] = "Editar Empleado";
+    ViewData["Title"] = "Editar Solicitud de Servicio";
 }
 
-<h1 class="text-center">Editar comprador 
+<h1 class="text-center">Editar Solicitud de Servicio </h1>
 
 <div class="container">
     <div class="row">
@@ -11,31 +11,42 @@
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly"></div>
             <form asp-action="Edit">
-                    <div class="form-group mt-3">
-                        <label asp-for="ServiceId" class="lable-control"></label>
-                        <select class="form-select" asp-for="ServiceId" asp-items="@ViewBag.Services">
-                            <option value="">Seleccione</option>
-                        </select>
-                        <span asp-validation-for="ServiceId" class="text-danger"></span>
-                    </div>
 
-                    <div class="form-group mt-3">
-                        <label asp-for="RequestDate" class="lable-control"></label>
-                        <input asp-for="RequestDate" class="form-control" />
-                        <span asp-validation-for="RequestDate" class="text-danger"></span>
-                    </div>
+                <div class="form-group mt-3">
+                    <label asp-for="ResidentName" class="lable-control"></label>
+                    <select class="form-select" asp-for="ResidentId" asp-items="@ViewBag.Residents">
+                        <option value="">Seleccione</option>
+                    </select>
+                    <span asp-validation-for="ResidentId" class="text-danger"></span>
+                </div>
 
-                    <div class="form-group mt-3">
-                        <label asp-for="Status" class="lable-control"></label>
-                        <input asp-for="Status" class="form-control" />
-                        <span asp-validation-for="Status" class="text-danger"></span>
-                    </div>
+                <div class="form-group mt-3">
+                    <label asp-for="ServiceName" class="lable-control"></label>
+                    <select class="form-select" asp-for="ServiceId" asp-items="@ViewBag.MunicipalServices">
+                        <option value="">Seleccione</option>
+                    </select>
+                    <span asp-validation-for="ServiceId" class="text-danger"></span>
+                </div>
 
-                    <div class="form-group mt-3">
-                        <input type="submit" value="Guardar" class="btn btn-success" />
+                <div class="form-group mt-3">
+                    <label asp-for="RequestDate" class="lable-control"></label>
+                    <input asp-for="RequestDate" class="form-control" />
+                    <span asp-validation-for="RequestDate" class="text-danger"></span>
+                </div>
 
-                        <a asp-action="Index" class="btn btn-primary">Volver al Listado</a>
-                    </div>
+                <div class="form-group mt-3">
+                    <label asp-for="Status" class="label-control"></label> <br />
+                    <input type="radio" asp-for="Status" value="true" checked="checked" /> Completada<br />
+                    <input type="radio" asp-for="Status" value="false" /> Pendiente
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                     <input type="submit" value="Guardar" class="btn btn-success" />
+
+                     <a asp-action="Index" class="btn btn-primary">Volver al Listado</a>
+                </div>
             </form>
         </div>
     </div>
+</div>

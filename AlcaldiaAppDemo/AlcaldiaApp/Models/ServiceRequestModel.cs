@@ -2,7 +2,7 @@
 
 namespace AlcaldiaApp.Models
 {
-    public class serviceRequestModel
+    public class ServiceRequestModel
     {
 		[Display(Name = "id")]
 		public int Id { get; set; }
@@ -18,5 +18,10 @@ namespace AlcaldiaApp.Models
 
         [Display(Name = "Estado")]
         public bool Status { get; set; }
+
+        public string ResidentName { get; set; }
+
+        public string ServiceName { get; set; }
+
     }
 }

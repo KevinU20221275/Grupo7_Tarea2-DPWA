@@ -4,13 +4,17 @@ namespace AlcaldiaApp.Repositories
 {
     public interface IServiceRequestRepository
     {
-		IServiceRequestRepository GetServiceRequestById(int id);
+        IEnumerable<ServiceRequestModel> GetAllServiceRequests();
 
-        IEnumerable<ServiceRequestRepository> GetServices();
+        ServiceRequestModel GetServiceRequestById(int id);
 
-        void Add(ServiceRequestRepository serviceRequest);
+        IEnumerable<MunicipalServiceModel> GetAllMunicipalServices();
 
-        void Edit(ServiceRequestRepository serviceRequest);
+        IEnumerable<ResidentModel> GetAllResidents();
+
+        void Add(ServiceRequestModel serviceRequest);
+
+        void Edit(ServiceRequestModel serviceRequest);
 
         void Delete(int id);
     }
