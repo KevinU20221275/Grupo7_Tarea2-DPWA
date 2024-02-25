@@ -54,7 +54,7 @@ namespace AlcaldiaApp.Repositories
 
 
         // GetEmployeeById
-        public EmployeeModel GetEmployeeById(int id)
+        public EmployeeModel? GetEmployeeById(int id)
         {
             EmployeeModel employee = new EmployeeModel();
 

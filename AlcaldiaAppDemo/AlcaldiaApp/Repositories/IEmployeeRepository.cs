@@ -6,7 +6,7 @@ namespace AlcaldiaApp.Repositories
     {
         IEnumerable<EmployeeModel> GetAllEmployees();
 
-        EmployeeModel GetEmployeeById(int id);
+        EmployeeModel? GetEmployeeById(int id);
 
         IEnumerable<PositionModel> GetPositions();
 

@@ -6,7 +6,7 @@ namespace AlcaldiaApp.Repositories
     {
         IEnumerable<PositionModel> GetAllPositions();
 
-        PositionModel GetPositionById(int id);
+        PositionModel? GetPositionById(int id);
 
         void Add(PositionModel positionMoldel);
 
