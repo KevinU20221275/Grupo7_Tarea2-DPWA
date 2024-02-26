@@ -1,9 +1,16 @@
 ﻿@model MunicipalServiceModel
 @{
+<<<<<<< HEAD
+    ViewData["Title"] = "Eliminar Servicio Municipal";
+}
+
+<h1 class="text-center">Seguro que Quieres Eliminar este Servicio Municipal?</h1>
+=======
     ViewData["Title"] = "Eliminar Servicio";
 }
 
 <h1 class="text-center">¿Seguro que Quieres Eliminar este Servicio?</h1>
+>>>>>>> d128b33e7bbc75fc55fdc6fee633c06c15ebf477
 
 <hr />
 
@@ -20,11 +27,19 @@
                 <dt>@Html.DisplayNameFor(model => model.Cost)</dt>
                 <dd>@Html.DisplayFor(model => model.Cost)</dd>
             </dl>
+<<<<<<< HEAD
+            <form asp-action="Delete">
+=======
             <form asp-action="Delete" class="mt-3">
+>>>>>>> d128b33e7bbc75fc55fdc6fee633c06c15ebf477
                 <input type="submit" value="Eliminar" class="btn btn-danger" />
 
                 <a asp-action="Index" class="btn btn-primary">Volver al Listado</a>
             </form>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> d128b33e7bbc75fc55fdc6fee633c06c15ebf477

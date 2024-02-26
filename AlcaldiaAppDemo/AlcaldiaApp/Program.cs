@@ -20,9 +20,13 @@ builder.Services.AddScoped<IValidator<PositionModel>, PositionValidator>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IValidator<EmployeeModel>, EmployeeValidator>();
 
-// dependency injection for the Employees table
+// dependency injection for the Resident table
 builder.Services.AddScoped<IResidentRepository, ResidentRepository>();
 builder.Services.AddScoped<IValidator<ResidentModel>, ResidentValidator>();
+
+// dependency injection for the MunicipalServices table
+builder.Services.AddScoped<IMunicipalServiceRepository, MunicipalServiceRepository>();
+builder.Services.AddScoped<IValidator<MunicipalServiceModel>, MunicipalServiceValidator>();
 
 // dependency injection for the ServiceRequests table
 builder.Services.AddScoped<IServiceRequestRepository, ServiceRequestRepository>();
