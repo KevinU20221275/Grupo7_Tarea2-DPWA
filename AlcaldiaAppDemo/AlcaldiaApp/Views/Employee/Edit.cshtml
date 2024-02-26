@@ -25,8 +25,8 @@
 
                 <div class="form-group mt-3">
                     <label asp-for="PositionName" class="lable-control"></label>
-                    <select class="form-select" asp-for="PositionId" asp-items="@ViewBag.Positions">
-                        <option value="">Seleccione</option>
+                    <select class="form-select" asp-for="PositionId" asp-items="@ViewBag.Positions" id="positionSearch">
+                        <option value="">Seleccione un Cargo</option>
                     </select>
                     <span asp-validation-for="PositionId" class="text-danger"></span>
                 </div>
@@ -46,3 +46,13 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $('#positionSearch').select2({
+            language: "es",
+            width: '100%',
+            placeholder: "Seleccione un Cargo",
+        });
+    </script>
+}

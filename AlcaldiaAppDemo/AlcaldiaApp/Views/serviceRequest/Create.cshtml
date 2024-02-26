@@ -1,4 +1,5 @@
 ﻿@model ServiceRequestModel
+
 @{
     ViewData["Title"] = "Agregar Solicitud de Servicio";
 }
@@ -14,16 +15,16 @@
 
                 <div class="form-group mt-3">
                     <label asp-for="ResidentName" class="lable-control"></label>
-                    <select class="form-select" asp-for="ResidentId" asp-items="@ViewBag.Residents">
-                        <option value="">Seleccione</option>
+                    <select class="form-select" asp-for="ResidentId" asp-items="@ViewBag.Residents" id="residentSearch">
+                        <option value="">Seleccione un Residente</option>
                     </select>
                     <span asp-validation-for="ResidentId" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mt-3">
                     <label asp-for="ServiceName" class="lable-control"></label>
-                    <select class="form-select" asp-for="ServiceId" asp-items="@ViewBag.MunicipalServices">
-                        <option value="">Seleccione</option>
+                    <select class="form-select" asp-for="ServiceId" asp-items="@ViewBag.MunicipalServices" id="serviceSearch">
+                        <option value="">Seleccione un Servicio</option>
                     </select>
                     <span asp-validation-for="ServiceId" class="text-danger"></span>
                 </div>
@@ -50,4 +51,22 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    
+    <script>
+        $('#residentSearch').select2({
+            language: "es", 
+            width: '100%',
+            placeholder: "Seleccione un residente",
+        });
+
+        $('#serviceSearch').select2({
+            language: "es", 
+            width: '100%',
+            placeholder: "Seleccione un Servicio",
+        });
+
+    </script>
+}
 

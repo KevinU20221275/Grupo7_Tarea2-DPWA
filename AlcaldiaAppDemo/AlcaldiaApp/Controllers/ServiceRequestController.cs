@@ -14,20 +14,20 @@ namespace AlcaldiaApp.Controllers
         private readonly IValidator<ServiceRequestModel> _serviceRequestValidator;
         private readonly IServiceRequestRepository _serviceRequestRepository;
         private SelectList _residentsList;
-        private SelectList _munisipalServicesList;
+        private SelectList _municipalServicesList;
 
         public ServiceRequestController(IServiceRequestRepository serviceRequestRepository, IValidator<ServiceRequestModel> serviceRequestValidator)
         {
             _serviceRequestRepository = serviceRequestRepository;
             _serviceRequestValidator = serviceRequestValidator;
 
-            var residents = _serviceRequestRepository.GetAllResidents();
+            var residents = _serviceRequestRepository.GetAllResidents(); // carga la lista de Servicios Municipales para el GET y POST de Create
             _residentsList = new SelectList(residents,
                                                 nameof(ResidentModel.Id),
                                                 nameof(ResidentModel.FirstName));
 
             var municipalServices = _serviceRequestRepository.GetAllMunicipalServices();   // carga la lista de Servicios Municipales para el GET y POST de Create
-            _munisipalServicesList = new SelectList(municipalServices,
+            _municipalServicesList = new SelectList(municipalServices,
                                                 nameof(MunicipalServiceModel.Id),
                                                 nameof(MunicipalServiceModel.ServiceName));
         }
@@ -47,7 +47,7 @@ namespace AlcaldiaApp.Controllers
         {
             ViewBag.Residents = _residentsList;
 
-            ViewBag.MunicipalServices = _munisipalServicesList;
+            ViewBag.MunicipalServices = _municipalServicesList;
 
             return View();
         }
@@ -61,13 +61,15 @@ namespace AlcaldiaApp.Controllers
             {
                 ViewBag.Residents = _residentsList;
 
-                ViewBag.MunicipalServices = _munisipalServicesList;
+                ViewBag.MunicipalServices = _municipalServicesList;
 
                 validationResult.AddToModelState(this.ModelState);
+
                 return View(serviceRequest);
             }
             _serviceRequestRepository.Add(serviceRequest);
             TempData["SuccessMessage"] = "El registro se creo exitosamente.";
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -90,12 +92,12 @@ namespace AlcaldiaApp.Controllers
             ViewBag.Residents = new SelectList(residents,
                                                 nameof(ResidentModel.Id),
                                                 nameof(ResidentModel.FirstName),
-                                                serviceRequest.Id);
+                                                serviceRequest.ResidentId);
 
             ViewBag.MunicipalServices = new SelectList(municipalServices,
                                                 nameof(MunicipalServiceModel.Id),
                                                 nameof(MunicipalServiceModel.ServiceName),
-                                                serviceRequest.Id);
+                                                serviceRequest.ServiceId);
             return View(serviceRequest);
         }
 
@@ -113,18 +115,19 @@ namespace AlcaldiaApp.Controllers
                 ViewBag.Residents = new SelectList(residents,
                                                 nameof(ResidentModel.Id),
                                                 nameof(ResidentModel.FirstName),
-                                                serviceRequest.Id);
+                                                serviceRequest.ResidentId);
 
                 ViewBag.MunicipalServices = new SelectList(municipalServices,
                                                     nameof(MunicipalServiceModel.Id),
                                                     nameof(MunicipalServiceModel.ServiceName),
-                                                    serviceRequest.Id);
+                                                    serviceRequest.ServiceId);
 
                 validationResult.AddToModelState(this.ModelState);
                 return View(serviceRequest);
             }
             _serviceRequestRepository.Edit(serviceRequest);
             TempData["SuccessMessage"] = "El registro se Edito exitosamente.";
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -147,6 +150,7 @@ namespace AlcaldiaApp.Controllers
         {
             _serviceRequestRepository.Delete(serviceRequest.Id);
             TempData["SuccessMessage"] = "El registro se Elimino exitosamente.";
+
             return RedirectToAction(nameof(Index));
         }
     }
