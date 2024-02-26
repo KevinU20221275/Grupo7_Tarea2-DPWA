@@ -1,4 +1,4 @@
-﻿@model EmployeeModel
+﻿@model MunicipalServiceModel
 @{
     ViewData["Title"] = "Servicios Municipales";
 }
@@ -12,29 +12,21 @@
             <div asp-validation-summary="ModelOnly"></div>
             <form asp-action="Create">
                 <div class="form-group">
-                    <label asp-for="FirstName" class="lable-control"></label>
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <label asp-for="ServiceName" class="lable-control"></label>
+                    <input asp-for="ServiceName" class="form-control" />
+                    <span asp-validation-for="ServiceName" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label asp-for="LastName" class="lable-control"></label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
+                    <label asp-for="Description" class="lable-control"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label asp-for="PositionName" class="lable-control"></label>
-                    <select class="form-select" asp-for="PositionId" asp-items="@ViewBag.Positions" id="positionSearch">
-                        <option value="">Seleccione un Cargo</option>
-                    </select>
-                    <span asp-validation-for="PositionId" class="text-danger"></span>
-                </div>
-
-                <div class="form-group mt-3">
-                    <label asp-for="Salary" class="lable-control"></label>
-                    <input asp-for="Salary" class="form-control" />
-                    <span asp-validation-for="Salary" class="text-danger"></span>
+                    <label asp-for="Cost" class="lable-control"></label>
+                    <input asp-for="Cost" class="form-control" />
+                    <span asp-validation-for="Cost" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mt-3">
