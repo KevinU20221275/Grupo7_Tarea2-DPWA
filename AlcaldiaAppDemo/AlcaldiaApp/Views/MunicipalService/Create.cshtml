@@ -1,0 +1,58 @@
+﻿@model EmployeeModel
+@{
+    ViewData["Title"] = "Servicios Municipales";
+}
+
+<h1 class="text-center">Agregar Servicio</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly"></div>
+            <form asp-action="Create">
+                <div class="form-group">
+                    <label asp-for="FirstName" class="lable-control"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label asp-for="LastName" class="lable-control"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label asp-for="PositionName" class="lable-control"></label>
+                    <select class="form-select" asp-for="PositionId" asp-items="@ViewBag.Positions" id="positionSearch">
+                        <option value="">Seleccione un Cargo</option>
+                    </select>
+                    <span asp-validation-for="PositionId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label asp-for="Salary" class="lable-control"></label>
+                    <input asp-for="Salary" class="form-control" />
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+
+                    <a asp-action="Index" class="btn btn-primary">Volver al Listado</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#positionSearch').select2({
+            language: "es",
+            width: '100%',
+            placeholder: "Seleccione un Cargo",
+        });
+    </script>
+}
