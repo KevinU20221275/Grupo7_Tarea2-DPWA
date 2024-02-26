@@ -1,0 +1,47 @@
+﻿@model ResidentModel
+
+@{
+    ViewData["Title"] = "Editar Residente";
+}
+
+<h1 class="text-center">Editar Residente</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly"></div>
+            <form asp-action="Edit">
+                <div class="form-group">
+                    <label asp-for="FirstName" class="lable-control"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label asp-for="LastName" class="lable-control"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label asp-for="Address" class="lable-control"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label asp-for="BirthDate" class="lable-control"></label>
+                    <input asp-for="BirthDate" class="form-control" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Editar" class="btn btn-success" />
+
+                    <a asp-action="Index" class="btn btn-primary">Volver al Listado</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
