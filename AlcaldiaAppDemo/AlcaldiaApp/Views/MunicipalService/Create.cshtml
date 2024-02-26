@@ -1,32 +1,53 @@
 ﻿@model MunicipalServiceModel
 @{
+<<<<<<< HEAD
     ViewData["Title"] = "Agregar un nuevo Servicio Municipal";
 }
 
 <h1 class="text-center">Agregar un nuevo Servicio Municipal</h1>
 <hr />
+=======
+    ViewData["Title"] = "Servicios Municipales";
+}
+
+<h1 class="text-center">Agregar Servicio</h1>
+>>>>>>> d128b33e7bbc75fc55fdc6fee633c06c15ebf477
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly"></div>
+<<<<<<< HEAD
 
             <form asp-action="Create">
                 <div class="form-group">
                     <label asp-for="ServiceName" class="label-control"></label>
+=======
+            <form asp-action="Create">
+                <div class="form-group">
+                    <label asp-for="ServiceName" class="lable-control"></label>
+>>>>>>> d128b33e7bbc75fc55fdc6fee633c06c15ebf477
                     <input asp-for="ServiceName" class="form-control" />
                     <span asp-validation-for="ServiceName" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mt-3">
+<<<<<<< HEAD
                     <label asp-for="Description" class="label-control"></label>
+=======
+                    <label asp-for="Description" class="lable-control"></label>
+>>>>>>> d128b33e7bbc75fc55fdc6fee633c06c15ebf477
                     <input asp-for="Description" class="form-control" />
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mt-3">
+<<<<<<< HEAD
                     <label asp-for="Cost" class="label-control"></label>
+=======
+                    <label asp-for="Cost" class="lable-control"></label>
+>>>>>>> d128b33e7bbc75fc55fdc6fee633c06c15ebf477
                     <input asp-for="Cost" class="form-control" />
                     <span asp-validation-for="Cost" class="text-danger"></span>
                 </div>
@@ -41,3 +62,15 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
+@section Scripts {
+    <script>
+        $('#positionSearch').select2({
+            language: "es",
+            width: '100%',
+            placeholder: "Seleccione un Cargo",
+        });
+    </script>
+}
+>>>>>>> d128b33e7bbc75fc55fdc6fee633c06c15ebf477
